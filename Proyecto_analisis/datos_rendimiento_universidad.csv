@@ -1,0 +1,202 @@
+id_estudiante,carrera,materia,calificacion,semestre,año
+1,Ingeniería Industrial,Algoritmos,9.8,1,2024
+2,Ingeniería Civil,Programación,8.9,1,2024
+3,Ingeniería Civil,Estadística,6.1,2,2023
+4,Ingeniería Civil,Física,9.4,7,2022
+5,Ingeniería Civil,Física,7.5,7,2022
+6,Ingeniería Mecánica,Cálculo,7.4,4,2024
+7,Ingeniería Industrial,Física,6.8,8,2023
+8,Ingeniería Civil,Cálculo,9.3,8,2022
+9,Ingeniería Mecánica,Base de Datos,6.2,8,2022
+10,Ingeniería en Computación,Programación,5.5,6,2022
+11,Ingeniería Industrial,Cálculo,6.4,7,2023
+12,Ingeniería Mecánica,Programación,7.7,6,2024
+13,Ingeniería Mecánica,Física,9.9,3,2023
+14,Ingeniería Civil,Cálculo,9.8,5,2022
+15,Ingeniería en Computación,Cálculo,9.4,7,2022
+16,Ingeniería en Computación,Estadística,8.3,5,2023
+17,Ingeniería Industrial,Algoritmos,9.6,1,2023
+18,Ingeniería Civil,Estadística,5.8,7,2023
+19,Ingeniería Industrial,Algoritmos,9.1,3,2022
+20,Ingeniería en Computación,Estadística,9.9,6,2023
+21,Ingeniería Mecánica,Algoritmos,9.4,7,2024
+22,Ingeniería Mecánica,Estadística,5,5,2024
+23,Ingeniería Civil,Estadística,9.5,7,2024
+24,Ingeniería Mecánica,Programación,8.1,6,2022
+25,Ingeniería Industrial,Estadística,8.4,5,2022
+26,Ingeniería en Computación,Algoritmos,5,6,2022
+27,Ingeniería Mecánica,Estadística,6.5,4,2022
+28,Ingeniería Industrial,Programación,7.4,1,2022
+29,Ingeniería Industrial,Estadística,9.4,3,2024
+30,Ingeniería Mecánica,Física,8.5,1,2023
+31,Ingeniería Civil,Base de Datos,5.3,8,2023
+32,Ingeniería Industrial,Estadística,9.7,3,2024
+33,Ingeniería Industrial,Física,9,7,2023
+34,Ingeniería Mecánica,Programación,7.1,7,2024
+35,Ingeniería Civil,Estadística,6.2,1,2024
+36,Ingeniería Industrial,Base de Datos,9.4,3,2022
+37,Ingeniería Mecánica,Cálculo,9,5,2022
+38,Ingeniería Civil,Algoritmos,5.5,6,2022
+39,Ingeniería Mecánica,Física,6.4,6,2023
+40,Ingeniería Industrial,Cálculo,7.1,8,2024
+41,Ingeniería Mecánica,Base de Datos,5.8,5,2024
+42,Ingeniería Civil,Algoritmos,6.5,3,2024
+43,Ingeniería Civil,Cálculo,7.9,7,2023
+44,Ingeniería Civil,Base de Datos,9.3,5,2023
+45,Ingeniería en Computación,Física,6.7,6,2023
+46,Ingeniería Civil,Física,9.7,3,2024
+47,Ingeniería Mecánica,Base de Datos,7.9,7,2024
+48,Ingeniería Industrial,Cálculo,7,2,2024
+49,Ingeniería Mecánica,Cálculo,5.7,3,2022
+50,Ingeniería Mecánica,Algoritmos,6.9,6,2022
+51,Ingeniería Mecánica,Cálculo,7.5,3,2024
+52,Ingeniería Civil,Programación,6.2,6,2022
+53,Ingeniería Mecánica,Física,7.7,8,2022
+54,Ingeniería en Computación,Algoritmos,8.2,3,2022
+55,Ingeniería Civil,Física,5.4,6,2022
+56,Ingeniería Mecánica,Cálculo,8,8,2022
+57,Ingeniería Civil,Cálculo,8.8,6,2024
+58,Ingeniería Civil,Programación,9.9,5,2022
+59,Ingeniería Civil,Física,7.2,2,2023
+60,Ingeniería en Computación,Estadística,9.1,5,2024
+61,Ingeniería Mecánica,Cálculo,5,1,2022
+62,Ingeniería Civil,Programación,7.4,5,2024
+63,Ingeniería Industrial,Estadística,6.5,4,2023
+64,Ingeniería Mecánica,Estadística,8.8,1,2023
+65,Ingeniería Civil,Programación,5.1,6,2024
+66,Ingeniería Civil,Física,7.4,7,2022
+67,Ingeniería Mecánica,Programación,7.1,1,2024
+68,Ingeniería Civil,Programación,7.3,8,2022
+69,Ingeniería Industrial,Programación,6.2,3,2023
+70,Ingeniería Industrial,Cálculo,8.7,1,2023
+71,Ingeniería Mecánica,Base de Datos,6.7,4,2023
+72,Ingeniería Mecánica,Cálculo,7.1,6,2024
+73,Ingeniería Mecánica,Física,6.9,1,2024
+74,Ingeniería Mecánica,Estadística,6.3,4,2024
+75,Ingeniería Industrial,Base de Datos,5.9,3,2023
+76,Ingeniería Mecánica,Física,8.3,8,2023
+77,Ingeniería en Computación,Programación,9.7,6,2024
+78,Ingeniería en Computación,Base de Datos,7.6,8,2023
+79,Ingeniería en Computación,Base de Datos,9.9,3,2022
+80,Ingeniería Industrial,Programación,6.5,3,2024
+81,Ingeniería Industrial,Física,8.5,7,2023
+82,Ingeniería Mecánica,Física,8.9,7,2024
+83,Ingeniería Civil,Estadística,7.9,6,2024
+84,Ingeniería Civil,Cálculo,9.7,4,2024
+85,Ingeniería Civil,Programación,9.7,7,2024
+86,Ingeniería en Computación,Base de Datos,5.7,2,2022
+87,Ingeniería Industrial,Algoritmos,9.6,7,2022
+88,Ingeniería Industrial,Estadística,5.7,4,2024
+89,Ingeniería Mecánica,Cálculo,8.9,7,2022
+90,Ingeniería en Computación,Cálculo,6,3,2023
+91,Ingeniería Industrial,Base de Datos,9.9,2,2023
+92,Ingeniería en Computación,Algoritmos,8.6,2,2024
+93,Ingeniería en Computación,Física,6.4,3,2024
+94,Ingeniería Civil,Cálculo,9.4,6,2024
+95,Ingeniería Civil,Programación,7.3,4,2022
+96,Ingeniería Mecánica,Base de Datos,7.1,3,2024
+97,Ingeniería Industrial,Física,9.6,3,2022
+98,Ingeniería en Computación,Algoritmos,6.5,6,2022
+99,Ingeniería en Computación,Física,5.3,4,2022
+100,Ingeniería Industrial,Base de Datos,6.3,5,2024
+101,Ingeniería Civil,Cálculo,9.7,3,2024
+102,Ingeniería Industrial,Programación,7,8,2022
+103,Ingeniería Mecánica,Cálculo,6.9,5,2022
+104,Ingeniería en Computación,Programación,5.5,2,2024
+105,Ingeniería Civil,Algoritmos,6.2,7,2022
+106,Ingeniería en Computación,Estadística,6,7,2024
+107,Ingeniería Civil,Física,6.2,6,2024
+108,Ingeniería Industrial,Base de Datos,9.6,8,2022
+109,Ingeniería Civil,Cálculo,9.5,4,2022
+110,Ingeniería Industrial,Base de Datos,6.9,7,2022
+111,Ingeniería Civil,Base de Datos,7,5,2024
+112,Ingeniería en Computación,Física,9.5,4,2024
+113,Ingeniería Civil,Programación,9.1,3,2022
+114,Ingeniería Mecánica,Estadística,7.4,4,2023
+115,Ingeniería en Computación,Física,6.3,7,2024
+116,Ingeniería en Computación,Estadística,6.2,8,2024
+117,Ingeniería Civil,Cálculo,7.1,1,2024
+118,Ingeniería en Computación,Estadística,9,8,2024
+119,Ingeniería Industrial,Estadística,8.4,8,2024
+120,Ingeniería Industrial,Base de Datos,5.9,1,2022
+121,Ingeniería Industrial,Cálculo,9.7,7,2023
+122,Ingeniería Mecánica,Base de Datos,7.2,7,2022
+123,Ingeniería en Computación,Programación,8.9,3,2022
+124,Ingeniería Industrial,Física,6.3,7,2023
+125,Ingeniería Industrial,Física,5.5,3,2023
+126,Ingeniería Industrial,Base de Datos,6.2,7,2022
+127,Ingeniería en Computación,Física,5.3,6,2022
+128,Ingeniería Industrial,Base de Datos,9.5,3,2023
+129,Ingeniería Mecánica,Estadística,8.3,6,2024
+130,Ingeniería Mecánica,Cálculo,8.5,6,2023
+131,Ingeniería Mecánica,Estadística,7.5,5,2023
+132,Ingeniería en Computación,Algoritmos,8,3,2023
+133,Ingeniería Civil,Cálculo,5.2,5,2024
+134,Ingeniería Mecánica,Programación,7.7,1,2022
+135,Ingeniería en Computación,Algoritmos,7.9,6,2024
+136,Ingeniería en Computación,Algoritmos,9.5,6,2024
+137,Ingeniería Industrial,Cálculo,6.9,6,2022
+138,Ingeniería en Computación,Base de Datos,8.7,1,2022
+139,Ingeniería Industrial,Estadística,9.2,2,2023
+140,Ingeniería Mecánica,Programación,7.6,8,2024
+141,Ingeniería Mecánica,Algoritmos,5.2,2,2024
+142,Ingeniería Civil,Cálculo,9.6,8,2022
+143,Ingeniería Civil,Estadística,9.2,1,2024
+144,Ingeniería Mecánica,Base de Datos,8,1,2022
+145,Ingeniería Mecánica,Física,5.8,7,2022
+146,Ingeniería Industrial,Cálculo,9.2,3,2023
+147,Ingeniería Civil,Programación,9.1,1,2024
+148,Ingeniería Civil,Estadística,5.1,8,2023
+149,Ingeniería Civil,Programación,6.8,3,2023
+150,Ingeniería Industrial,Programación,8.5,3,2022
+151,Ingeniería Mecánica,Física,9.6,8,2024
+152,Ingeniería Industrial,Física,7.7,2,2023
+153,Ingeniería Civil,Estadística,6,2,2023
+154,Ingeniería Civil,Base de Datos,6,7,2024
+155,Ingeniería Civil,Estadística,7.3,5,2022
+156,Ingeniería Civil,Estadística,5.6,2,2024
+157,Ingeniería Mecánica,Base de Datos,9.4,1,2024
+158,Ingeniería Mecánica,Física,6.2,4,2023
+159,Ingeniería Industrial,Programación,6,2,2023
+160,Ingeniería Industrial,Estadística,5.7,7,2024
+161,Ingeniería en Computación,Algoritmos,8,6,2023
+162,Ingeniería Civil,Programación,9.5,8,2024
+163,Ingeniería Industrial,Base de Datos,7.4,4,2024
+164,Ingeniería Civil,Cálculo,7.8,5,2022
+165,Ingeniería Industrial,Estadística,8.9,1,2024
+166,Ingeniería Industrial,Estadística,6.9,1,2023
+167,Ingeniería Industrial,Programación,8.5,3,2024
+168,Ingeniería en Computación,Física,5.5,4,2024
+169,Ingeniería en Computación,Programación,6.3,4,2022
+170,Ingeniería Mecánica,Algoritmos,5.3,1,2022
+171,Ingeniería en Computación,Base de Datos,9.1,5,2022
+172,Ingeniería Civil,Algoritmos,8.5,4,2023
+173,Ingeniería Civil,Física,8.4,5,2024
+174,Ingeniería Civil,Estadística,8.9,3,2023
+175,Ingeniería en Computación,Base de Datos,7,8,2023
+176,Ingeniería Civil,Física,7.3,3,2024
+177,Ingeniería Mecánica,Estadística,7.1,2,2022
+178,Ingeniería Industrial,Algoritmos,9.2,5,2024
+179,Ingeniería Mecánica,Estadística,6,3,2023
+180,Ingeniería Civil,Física,9.9,3,2024
+181,Ingeniería en Computación,Estadística,6.9,8,2023
+182,Ingeniería Industrial,Programación,7.5,4,2022
+183,Ingeniería en Computación,Estadística,7.6,8,2022
+184,Ingeniería Civil,Base de Datos,8.9,6,2024
+185,Ingeniería Industrial,Cálculo,6.7,2,2024
+186,Ingeniería en Computación,Cálculo,6,5,2022
+187,Ingeniería Civil,Física,7.4,6,2024
+188,Ingeniería Mecánica,Programación,8.7,4,2024
+189,Ingeniería Civil,Cálculo,8,1,2023
+190,Ingeniería Industrial,Base de Datos,6.3,4,2024
+191,Ingeniería Industrial,Estadística,5.5,3,2022
+192,Ingeniería Industrial,Estadística,8,6,2024
+193,Ingeniería en Computación,Algoritmos,9,4,2024
+194,Ingeniería Civil,Algoritmos,5.8,4,2022
+195,Ingeniería Civil,Programación,9.7,8,2023
+196,Ingeniería Civil,Estadística,6.1,8,2023
+197,Ingeniería en Computación,Programación,7.1,5,2022
+198,Ingeniería Civil,Programación,7.8,1,2024
+199,Ingeniería en Computación,Estadística,8.3,6,2022
+200,Ingeniería Civil,Base de Datos,9.8,8,2024
+201,Ingeniería Civil,Progrmacion web1,10,1,2003

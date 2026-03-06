@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Academic Performance Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <style type="text/tailwindcss">
+        :root {
+            --primary-color: #4f46e5;
+            --bg-soft: #f8fafc;
+        }
+        body { font-family: 'Lexend', sans-serif; background-color: var(--bg-soft); }
+
+        .skeleton { background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 6px; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+        .fade-in { animation: fadeIn .4s ease both; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4f46e5",
+                        "accent-blue": "#e0f2fe",
+                        "accent-red": "#fef2f2",
+                        "accent-orange": "#fff7ed",
+                        "accent-green": "#f0fdf4",
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-slate-800 antialiased">
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Header / Filters -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+            <h1 class="text-2xl font-bold text-slate-900">Academic Performance Dashboard</h1>
+            <p class="text-sm text-slate-500 mt-1">Análisis de rendimiento académico universitario</p>
+        </div>
+        <div class="flex flex-wrap gap-3 items-end">
+            <div class="flex flex-col gap-1">
+                <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">Carrera</label>
+                <select id="filtro-carrera" class="form-select text-sm border-slate-200 rounded-lg bg-white focus:ring-primary focus:border-primary min-w-[200px]">
+                    <option value="todas">Todas las Carreras</option>
+                </select>
+            </div>
+            <div class="flex flex-col gap-1">
+                <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">Año</label>
+                <select id="filtro-anio" class="form-select text-sm border-slate-200 rounded-lg bg-white focus:ring-primary focus:border-primary min-w-[100px]">
+                    <option value="">Todos</option>
+                </select>
+            </div>
+            <button id="btn-export" class="self-end px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-sm flex items-center gap-2">
+                <span class="material-symbols-outlined text-lg">download</span>
+                Export CSV
+            </button>
+        </div>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <!-- Average Grade -->
+        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="text-slate-500 text-sm font-medium">Average Grade</p>
+                    <h3 id="kpi-promedio" class="text-3xl font-bold text-slate-900 mt-1">
+                        <span class="skeleton inline-block w-20 h-8">&nbsp;</span>
+                    </h3>
+                </div>
+                <div class="p-3 rounded-lg bg-accent-blue text-blue-600">
+                    <span class="material-symbols-outlined">grade</span>
+                </div>
+            </div>
+            <div class="mt-4 flex items-center gap-2 text-slate-400 text-xs font-bold" id="kpi-promedio-sub">
+                <span class="material-symbols-outlined text-sm">trending_up</span>
+                <span>Promedio global</span>
+            </div>
+        </div>
+
+        <!-- Fail Rate -->
+        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="text-slate-500 text-sm font-medium">Fail Rate</p>
+                    <h3 id="kpi-reprobacion" class="text-3xl font-bold text-slate-900 mt-1">
+                        <span class="skeleton inline-block w-20 h-8">&nbsp;</span>
+                    </h3>
+                </div>
+                <div class="p-3 rounded-lg bg-accent-red text-red-600">
+                    <span class="material-symbols-outlined">assignment_late</span>
+                </div>
+            </div>
+            <div class="mt-4 flex items-center gap-2 text-slate-500 text-xs" id="kpi-reprobacion-sub">
+                <span class="font-bold text-red-500">Highest:</span>
+                <span class="skeleton inline-block w-32 h-3">&nbsp;</span>
+            </div>
+        </div>
+
+        <!-- At-Risk -->
+        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="text-slate-500 text-sm font-medium">At-Risk Count</p>
+                    <h3 id="kpi-riesgo" class="text-3xl font-bold text-slate-900 mt-1">
+                        <span class="skeleton inline-block w-16 h-8">&nbsp;</span>
+                    </h3>
+                </div>
+                <div class="p-3 rounded-lg bg-accent-orange text-orange-600">
+                    <span class="material-symbols-outlined">warning</span>
+                </div>
+            </div>
+            <div class="mt-4 flex items-center gap-2 text-orange-600 text-xs font-bold">
+                <span class="material-symbols-outlined text-sm">group</span>
+                <span>Calificación &lt; 6.0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts row -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+
+        <!-- Reprobación por materia -->
+        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+            <h4 class="font-bold text-slate-900 mb-6 flex items-center gap-2">
+                Materias con mayor reprobación
+                <span class="text-xs font-normal text-slate-400">(Tasa %)</span>
+            </h4>
+            <div id="chart-reprobacion" class="space-y-5">
+                <!-- injected by JS -->
+                <div class="space-y-2"><div class="skeleton h-3 w-full rounded-full"></div></div>
+                <div class="space-y-2"><div class="skeleton h-3 w-3/4 rounded-full"></div></div>
+                <div class="space-y-2"><div class="skeleton h-3 w-2/3 rounded-full"></div></div>
+                <div class="space-y-2"><div class="skeleton h-3 w-1/2 rounded-full"></div></div>
+            </div>
+        </div>
+
+        <!-- Tendencia por semestre -->
+        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+            <div class="flex justify-between items-center mb-6">
+                <h4 class="font-bold text-slate-900">Tendencia por Semestre</h4>
+                <div class="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
+                    <span class="size-2.5 bg-primary rounded-full"></span>
+                    Promedio Global
+                </div>
+            </div>
+            <div class="relative h-48 w-full mt-4 flex flex-col">
+                <svg id="chart-tendencia-svg" class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 500 100">
+                    <line stroke="#f1f5f9" stroke-width="1" x1="0" x2="500" y1="20" y2="20"/>
+                    <line stroke="#f1f5f9" stroke-width="1" x1="0" x2="500" y1="40" y2="40"/>
+                    <line stroke="#f1f5f9" stroke-width="1" x1="0" x2="500" y1="60" y2="60"/>
+                    <line stroke="#f1f5f9" stroke-width="1" x1="0" x2="500" y1="80" y2="80"/>
+                    <defs>
+                        <linearGradient id="lineGrad" x1="0%" x2="0%" y1="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:0.2"/>
+                            <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:0"/>
+                        </linearGradient>
+                    </defs>
+                    <path id="chart-tendencia-area" d="" fill="url(#lineGrad)"/>
+                    <path id="chart-tendencia-line" d="" fill="none" stroke="#4f46e5" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                    <g id="chart-tendencia-dots"></g>
+                </svg>
+                <div id="chart-tendencia-labels" class="flex justify-between mt-6 text-[10px] text-slate-400 font-bold uppercase tracking-widest"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Promedios por carrera -->
+        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm lg:col-span-1">
+            <h4 class="font-bold text-slate-900 mb-6">Carreras con mayor promedio</h4>
+            <div id="chart-carreras" class="space-y-6">
+                <div class="skeleton h-8 rounded-lg w-full"></div>
+                <div class="skeleton h-8 rounded-lg w-5/6"></div>
+                <div class="skeleton h-8 rounded-lg w-3/4"></div>
+                <div class="skeleton h-8 rounded-lg w-2/3"></div>
+            </div>
+        </div>
+
+        <!-- Tabla de alumnos en riesgo -->
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm lg:col-span-2 overflow-hidden flex flex-col">
+            <div class="p-6 border-b border-slate-100 flex justify-between items-center">
+                <div>
+                    <h4 class="font-bold text-slate-900">Alumnos en Riesgo</h4>
+                    <p class="text-xs text-slate-500">Listado de alumnos con promedio &lt; 6.0</p>
+                </div>
+                <span class="px-2 py-1 bg-accent-red text-red-600 text-[10px] font-bold rounded uppercase tracking-wider">Acción Crítica</span>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-slate-50 text-slate-500 text-[10px] font-bold uppercase tracking-wider">
+                        <tr>
+                            <th class="px-6 py-4">ID Estudiante</th>
+                            <th class="px-6 py-4">Carrera</th>
+                            <th class="px-6 py-4">Materia</th>
+                            <th class="px-6 py-4 text-center">Calificación</th>
+                            <th class="px-6 py-4 text-right">Estatus</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-riesgo" class="divide-y divide-slate-100">
+                        <!-- skeleton rows -->
+                        <tr><td colspan="5" class="px-6 py-4"><div class="skeleton h-4 rounded w-full"></div></td></tr>
+                        <tr><td colspan="5" class="px-6 py-4"><div class="skeleton h-4 rounded w-5/6"></div></td></tr>
+                        <tr><td colspan="5" class="px-6 py-4"><div class="skeleton h-4 rounded w-3/4"></div></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="p-4 bg-slate-50 border-t border-slate-100 text-center">
+                <button id="btn-ver-todos" class="text-xs font-bold text-primary hover:underline hidden">Ver todos los casos de riesgo</button>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script>
+const API = "http://localhost:5000/api";
+const PREVIEW_LIMIT = 5;
+let allRiesgoData = [];
+let showingAll = false;
+
+// ── helpers ──────────────────────────────────────────────────────────────────
+
+function getFilters() {
+    return {
+        carrera: document.getElementById("filtro-carrera").value,
+        anio: document.getElementById("filtro-anio").value
+    };
+}
+
+function buildQS({ carrera, anio }) {
+    const p = new URLSearchParams();
+    if (carrera && carrera !== "todas") p.set("carrera", carrera);
+    if (anio) p.set("anio", anio);
+    return p.toString() ? "?" + p.toString() : "";
+}
+
+async function fetchJSON(url) {
+    const r = await fetch(url);
+    if (!r.ok) throw new Error("API error " + r.status);
+    return r.json();
+}
+
+function barColor(pct) {
+    if (pct >= 30) return "bg-red-400";
+    if (pct >= 20) return "bg-orange-400";
+    return "bg-yellow-400";
+}
+
+// ── renderers ────────────────────────────────────────────────────────────────
+
+function renderSummary(d) {
+    document.getElementById("kpi-promedio").innerHTML =
+        `<span class="fade-in">${d.average_grade}</span>`;
+    document.getElementById("kpi-reprobacion").innerHTML =
+        `<span class="fade-in">${d.fail_rate}%</span>`;
+    document.getElementById("kpi-riesgo").innerHTML =
+        `<span class="fade-in">${String(d.at_risk_count).padStart(2, "0")}</span>`;
+    document.getElementById("kpi-reprobacion-sub").innerHTML =
+        `<span class="font-bold text-red-500">Highest:</span>
+         <span>${d.highest_fail_subject} (${d.highest_fail_pct}%)</span>`;
+}
+
+function renderReprobacion(data) {
+    const el = document.getElementById("chart-reprobacion");
+    el.innerHTML = data.map(({ materia, indice }) => `
+        <div class="space-y-2 fade-in">
+            <div class="flex justify-between text-xs font-medium">
+                <span class="text-slate-600">${materia}</span>
+                <span class="text-slate-900">${indice}%</span>
+            </div>
+            <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                <div class="${barColor(indice)} h-full rounded-full transition-all duration-700" style="width:${indice}%"></div>
+            </div>
+        </div>`).join("");
+}
+
+function renderTendencia(data) {
+    if (!data.length) return;
+
+    const W = 500, H = 100, PAD = 10;
+    const promedios = data.map(d => d.promedio);
+    const minP = Math.min(...promedios) - 1;
+    const maxP = Math.max(...promedios) + 1;
+
+    const xStep = (W - PAD * 2) / (data.length - 1 || 1);
+    const pts = data.map((d, i) => {
+        const x = PAD + i * xStep;
+        const y = H - PAD - ((d.promedio - minP) / (maxP - minP)) * (H - PAD * 2);
+        return [x, y];
+    });
+
+    const lineD = pts.map((p, i) => `${i === 0 ? "M" : "L"}${p[0]},${p[1]}`).join(" ");
+    const areaD = lineD + ` L${pts[pts.length-1][0]},${H} L${pts[0][0]},${H} Z`;
+
+    document.getElementById("chart-tendencia-line").setAttribute("d", lineD);
+    document.getElementById("chart-tendencia-area").setAttribute("d", areaD);
+
+    const dotsEl = document.getElementById("chart-tendencia-dots");
+    dotsEl.innerHTML = pts.map(([x, y]) =>
+        `<circle cx="${x}" cy="${y}" r="4" fill="#4f46e5"/>`
+    ).join("");
+
+    document.getElementById("chart-tendencia-labels").innerHTML =
+        data.map(d => `<span>${d.semestre}</span>`).join("");
+}
+
+function renderCarreras(data) {
+    const max = data[0]?.promedio || 10;
+    document.getElementById("chart-carreras").innerHTML = data.map((d, i) => {
+        const opacity = ["80", "60", "40", "20"][i] || "20";
+        return `
+        <div class="fade-in">
+            <div class="flex justify-between text-xs mb-2">
+                <span class="text-slate-600 font-medium">${d.carrera.replace("Ingeniería ", "Ing. ")}</span>
+                <span class="font-bold text-slate-900">${d.promedio}</span>
+            </div>
+            <div class="w-full bg-slate-100 h-8 rounded-lg overflow-hidden">
+                <div class="bg-indigo-500/${opacity} h-full rounded-r-sm transition-all duration-700"
+                     style="width:${(d.promedio / 10 * 100).toFixed(1)}%"></div>
+            </div>
+        </div>`;
+    }).join("");
+}
+
+function renderRiesgo(data, limit) {
+    const rows = limit ? data.slice(0, limit) : data;
+    document.getElementById("tabla-riesgo").innerHTML = rows.length
+        ? rows.map(r => `
+            <tr class="hover:bg-slate-50 transition-colors fade-in">
+                <td class="px-6 py-4 text-sm font-semibold text-slate-900">#${r.id}</td>
+                <td class="px-6 py-4 text-sm text-slate-600">${r.carrera.replace("Ingeniería ", "Ing. ")}</td>
+                <td class="px-6 py-4 text-sm text-slate-600">${r.materia}</td>
+                <td class="px-6 py-4 text-center">
+                    <span class="text-sm font-bold text-red-600">${r.calificacion}</span>
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <span class="px-2 py-0.5 rounded-full bg-red-100 text-red-700 text-[10px] font-bold">ALERTA</span>
+                </td>
+            </tr>`).join("")
+        : `<tr><td colspan="5" class="px-6 py-8 text-center text-sm text-slate-400">
+               <span class="material-symbols-outlined text-3xl block mb-2 text-green-400">check_circle</span>
+               No hay alumnos en riesgo con los filtros actuales
+           </td></tr>`;
+
+    const btnVerTodos = document.getElementById("btn-ver-todos");
+    if (data.length > PREVIEW_LIMIT) {
+        btnVerTodos.classList.remove("hidden");
+        btnVerTodos.textContent = showingAll
+            ? "Ver menos"
+            : `Ver todos los casos de riesgo (${data.length})`;
+    } else {
+        btnVerTodos.classList.add("hidden");
+    }
+}
+
+// ── export CSV ───────────────────────────────────────────────────────────────
+
+document.getElementById("btn-export").addEventListener("click", async () => {
+    const qs = buildQS(getFilters());
+    const data = await fetchJSON(`${API}/riesgo${qs}`);
+    const header = "ID,Carrera,Materia,Calificacion\n";
+    const rows = data.map(r => `${r.id},${r.carrera},${r.materia},${r.calificacion}`).join("\n");
+    const blob = new Blob([header + rows], { type: "text/csv" });
+    const a = Object.assign(document.createElement("a"), {
+        href: URL.createObjectURL(blob),
+        download: "alumnos_en_riesgo.csv"
+    });
+    a.click();
+});
+
+// ── toggle ver todos ─────────────────────────────────────────────────────────
+
+document.getElementById("btn-ver-todos").addEventListener("click", () => {
+    showingAll = !showingAll;
+    renderRiesgo(allRiesgoData, showingAll ? null : PREVIEW_LIMIT);
+});
+
+// ── main load ────────────────────────────────────────────────────────────────
+
+async function loadAll() {
+    const qs = buildQS(getFilters());
+    try {
+        const [summary, reprobacion, tendencia, carreras, riesgo] = await Promise.all([
+            fetchJSON(`${API}/summary${qs}`),
+            fetchJSON(`${API}/reprobacion${qs}`),
+            fetchJSON(`${API}/tendencia${qs}`),
+            fetchJSON(`${API}/promedios_carrera${buildQS({ anio: getFilters().anio })}`),
+            fetchJSON(`${API}/riesgo${qs}`)
+        ]);
+
+        renderSummary(summary);
+        renderReprobacion(reprobacion);
+        renderTendencia(tendencia);
+        renderCarreras(carreras);
+        allRiesgoData = riesgo;
+        showingAll = false;
+        renderRiesgo(riesgo, PREVIEW_LIMIT);
+    } catch (e) {
+        console.error("Error cargando datos:", e);
+        document.body.insertAdjacentHTML("afterbegin",
+            `<div class="bg-red-100 border border-red-300 text-red-700 text-sm px-4 py-3 text-center">
+                ⚠️ No se pudo conectar con el backend Flask. Asegúrate de que <code>app.py</code> está corriendo en <code>localhost:5000</code>.
+             </div>`);
+    }
+}
+
+// ── poblar filtros dinámicamente ─────────────────────────────────────────────
+
+async function loadFiltros() {
+    const data = await fetchJSON(`${API}/filtros`);
+
+    const selectCarrera = document.getElementById("filtro-carrera");
+    data.carreras.forEach(c => {
+        const opt = document.createElement("option");
+        opt.value = c;
+        opt.textContent = c;
+        selectCarrera.appendChild(opt);
+    });
+
+    const selectAnio = document.getElementById("filtro-anio");
+    data.años.forEach(a => {
+        const opt = document.createElement("option");
+        opt.value = a;
+        opt.textContent = a;
+        selectAnio.appendChild(opt);
+    });
+}
+
+// ── event listeners ───────────────────────────────────────────────────────────
+
+document.getElementById("filtro-carrera").addEventListener("change", loadAll);
+document.getElementById("filtro-anio").addEventListener("change", loadAll);
+
+loadFiltros().then(() => loadAll());
+</script>
+
+</body>
+</html>
